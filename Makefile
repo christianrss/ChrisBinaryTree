@@ -1,12 +1,15 @@
 flags=-Wall -O2 -std=c2x
 ldflags=
 
-all: tree
+all: bin/tree
 
-tree: bin/tree.o
-	cc ${flags} $^ -o bin/$@ ${ldflags}
-tree.o: tree.c
-	cc ${flags} -c $^ -o bin/$@
+bin:
+	mkdir -p bin
+
+bin/tree: bin/tree.o | bin
+	cc ${flags} $^ -o $@ ${ldflags}
+bin/tree.o: tree.c | bin
+	cc ${flags} -c $< -o $@
 
 clean:
-	rm -rf *.o tree 
+	rm -rf bin/*.o bin/tree
