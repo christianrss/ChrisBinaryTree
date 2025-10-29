@@ -3,6 +3,9 @@ ldflags=
 
 all: bin/tree
 
+run:
+	./bin/tree
+
 bin:
 	mkdir -p bin
 
